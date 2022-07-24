@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: 個人開発API
   description: >-
-    個人開発で必要なAPIを定義するぞ！
+    APIの定義書
 servers:
   - url: 'http://localhost:8003'
 paths:
@@ -12,23 +12,6 @@ paths:
       description: >
         Returns all users
       operationId: findUsers
-      parameters:
-        - name: tags
-          in: query
-          description: tags to filter by
-          required: false
-          style: form
-          schema:
-            type: array
-            items:
-              type: string
-        - name: limit
-          in: query
-          description: maximum number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
       responses:
         '200':
           description: user response
@@ -44,48 +27,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /mypage:
-    get:
-      tags: 
-        - マイページ
-      summary: 
-        マイページ情報取得雨
-      description:
-        ログインしたユーザーの情報を取得するよ
-      responses:
-        '200':
-          description: user response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-    put:
-      tags: 
-        - マイページ
-      summary: 
-        マイページ情報取得雨
-      description:
-        ログインしたユーザーの情報を取得するよ
-      parameters:
-        - name: user_id
-          in: path
-          description: 取得対象のユーザー ID
-          required: true
-          schema:
-            $ref: '#/components/schemas/user_id'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/fujikawa'
-        required: true
-      responses:
-        '200':
-          description: user response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
+  # /mypage:
+  #   get:
+  #     tags: 
+  #       - マイページ
+  #     summary: 
+  #       マイページ情報取得
+  #     description:
+  #       ログインしたユーザーの情報を取得する
+  #     responses:
+  #       '200':
+  #         description: user response
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/User'
+  #   put:
+  #     tags: 
+  #       - マイページ
+  #     summary: 
+  #       マイページ情報取得雨
+  #     description:
+  #       ログインしたユーザーの情報を取得するよ
+  #     parameters:
+  #       - name: user_id
+  #         in: path
+  #         description: 取得対象のユーザー ID
+  #         required: true
+  #         schema:
+  #           $ref: '#/components/schemas/user_id'
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/fujikawa'
+  #       required: true
+  #     responses:
+  #       '200':
+  #         description: user response
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/User'
 components:
   schemas:
     User:
@@ -129,33 +112,33 @@ components:
                       - "pending"
                       - "active"
                       - "inactive"
-    user_id:
-      description: ユーザー識別子
-      type: string
-      pattern: '[a-zA-Z0-9_-]+'
-      maxLength: 127
-      example: halhorn
-      readOnly: true
-    fujikawa:
-      description: ユーザー
-      type: object
-      properties:
-        user_id:
-          $ref: '#/components/schemas/user_id'
-        name:
-          description: 氏名
-          example: 信田春満
-          type: string
-          maxLength: 127
-        mail_address:
-          description: メールアドレス
-          type: string
-          format: email
-        age:
-          description: 年齢
-          example: 32
-          type: integer
-          minimum: 0
+    # user_id:
+    #   description: ユーザー識別子
+    #   type: string
+    #   pattern: '[a-zA-Z0-9_-]+'
+    #   maxLength: 127
+    #   example: halhorn
+    #   readOnly: true
+    # fujikawa:
+    #   description: ユーザー
+    #   type: object
+    #   properties:
+    #     user_id:
+    #       $ref: '#/components/schemas/user_id'
+    #     name:
+    #       description: 氏名
+    #       example: ふじかわ
+    #       type: string
+    #       maxLength: 127
+    #     mail_address:
+    #       description: メールアドレス
+    #       type: string
+    #       format: email
+    #     age:
+    #       description: 年齢
+    #       example: 32
+    #       type: integer
+    #       minimum: 0
     Error:
       type: "object"
       properties:
