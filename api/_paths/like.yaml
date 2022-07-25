@@ -1,0 +1,44 @@
+get:
+  tags:
+    - like
+  description:
+    ユーザーの詳細情報を取得する
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+
+post:
+  tags:
+    - like
+  description:
+    ユーザーにいいねを押す
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+
+put:
+  tags:
+    - like
+  description:
+    いいねを返す
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"

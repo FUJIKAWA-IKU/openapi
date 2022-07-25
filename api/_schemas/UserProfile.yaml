@@ -1,0 +1,36 @@
+type: "object"
+properties:
+  id:
+    type: "integer"
+    format: "int64"
+    example: 100
+  user_id:
+    type: "integer"
+    format: "int64"
+    example: 3
+  name:
+    type: "string"
+    example: "ふじかわ"
+  age:
+    type: "integer"
+    format: "int64"
+    example: 28
+  gender:
+    type: "integer"
+    format: "int64"
+    example: 2
+  level:
+    type: "integer"
+    format: "int64"
+    example: 28
+  purpose:
+    type: "integer"
+    format: "int64"
+    example: 2
+  how_to_connect:
+    type: "integer"
+    format: "int64"
+    example: 1
+  self_introduction:
+    type: "string"
+    example: "よろしくお願いします！"

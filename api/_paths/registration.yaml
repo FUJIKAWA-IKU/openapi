@@ -1,0 +1,17 @@
+post:
+  tags:
+    - registration
+  description:
+    ユーザーを新規登録する
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              user_profile:
+                $ref: '../openapi.yaml#/components/schemas/UserProfile'
+              informaiton:
+                $ref: '../openapi.yaml#/components/schemas/Login'

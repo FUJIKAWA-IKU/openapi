@@ -1,0 +1,14 @@
+get:
+  tags:
+    - like_from
+  description:
+    ユーザーからのいいね一覧ページ取得
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"

@@ -1,0 +1,25 @@
+post:
+  tags:
+    - login
+  description:
+    ログインする
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/Login"
+
+# post:
+#   tags:
+#     - logout
+#   description:
+#     ログアウトする
+#   responses:
+#     '200':
+#       description: SUCCESS
+#       content:
+#         application/json:
+#           schema:
+#             $ref: "../openapi.yaml#/components/schemas/Login"

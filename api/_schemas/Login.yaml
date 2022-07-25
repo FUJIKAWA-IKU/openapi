@@ -1,0 +1,10 @@
+type: "object"
+properties:
+  login_id:
+    type: "integer"
+    format: "int64"
+    example: 1234
+  login_password:
+    type: "integer"
+    format: "int64"
+    example: password

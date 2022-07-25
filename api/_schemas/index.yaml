@@ -1,0 +1,5 @@
+UserProfile:
+  $ref: "./UserProfile.yaml"
+
+Login:
+  $ref: "./Login.yaml"

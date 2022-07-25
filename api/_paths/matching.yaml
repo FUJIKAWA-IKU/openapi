@@ -1,0 +1,14 @@
+get:
+  tags:
+    - matching
+  description:
+    マッチングしたユーザー一覧を取得する
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"

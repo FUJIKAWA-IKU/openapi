@@ -1,0 +1,14 @@
+get:
+  tags:
+    - user_detail
+  description:
+    ユーザーの詳細情報を取得する
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/UserId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"

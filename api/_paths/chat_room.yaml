@@ -1,0 +1,29 @@
+get:
+  tags:
+    - chat_room
+  description:
+    チャット画面
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/ChatRoomId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+
+post:
+  tags:
+    - chat_room
+  description:
+    チャットの投稿
+  parameters:
+    - $ref: "../openapi.yaml#/components/parameters/ChatRoomId"
+  responses:
+    '200':
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/UserProfile"

@@ -1,0 +1,17 @@
+UserId:
+  name: user_id
+  in: path
+  description: ユーザーID
+  required: true
+  schema:
+    type: integer
+    format: int64
+
+ChatRoomId:
+  name: chat_room_id
+  in: path
+  description: チャットルームID
+  required: true
+  schema:
+    type: integer
+    format: int64

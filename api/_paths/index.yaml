@@ -1,0 +1,26 @@
+/api/mypage:
+  $ref: "./mypage.yaml"
+
+/api/login:
+  $ref: "./login.yaml"
+
+/api/registration:
+  $ref: "./registration.yaml"
+
+/api/search:
+  $ref: "./search.yaml"
+
+/api/user_profile/{user_id}:
+  $ref: "./user_detail.yaml"
+
+/api/like/{user_id}:
+  $ref: "./like.yaml"
+
+/api/like_from/{user_id}:
+  $ref: "./like_from.yaml"
+
+/api/matching/{user_id}:
+  $ref: "./matching.yaml"
+
+/api/chat_room/{chat_room_id}:
+  $ref: "./chat_room.yaml"
