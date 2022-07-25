@@ -1,0 +1,11 @@
+type: object
+properties:
+  type:
+    type: string
+    example: bad_request
+  title:
+    type: string
+    example: Request parameters are invalid
+  code:
+    type: integer
+    example: 400

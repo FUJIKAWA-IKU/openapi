@@ -22,10 +22,12 @@ post:
     チャットの投稿
   parameters:
     - $ref: "../openapi.yaml#/components/parameters/ChatRoomId"
+  requestBody:
+    description: Sign In data
+    content:
+      application/json:
+        schema:
+          $ref: "../openapi.yaml#/components/schemas/Message"
   responses:
     '200':
       description: SUCCESS
-      content:
-        application/json:
-          schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"

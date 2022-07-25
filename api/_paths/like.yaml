@@ -25,10 +25,6 @@ post:
   responses:
     '200':
       description: SUCCESS
-      content:
-        application/json:
-          schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
 
 put:
   tags:
@@ -41,7 +37,9 @@ put:
   responses:
     '200':
       description: SUCCESS
+    "400":
+      description: Invalid parameters
       content:
         application/json:
           schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+            $ref: "../openapi.yaml#/components/schemas/InvalidParams"

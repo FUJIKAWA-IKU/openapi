@@ -21,13 +21,15 @@ put:
     マイページの情報を更新する
   parameters:
     - $ref: "../openapi.yaml#/components/parameters/UserId"
+  requestBody:
+    description: Sign In data
+    content:
+      application/json:
+        schema:
+          $ref: "../openapi.yaml#/components/schemas/UserProfile"
   responses:
     '200':
       description: SUCCESS
-      content:
-        application/json:
-          schema:
-            $ref: '../openapi.yaml#/components/schemas/UserProfile'
 
 delete:
   tags:

@@ -1,8 +1,14 @@
-UserProfile:
-  $ref: "./UserProfile.yaml"
-
 Login:
   $ref: "./Login.yaml"
 
 SessionExpired:
   $ref: "./SessionExpired.yaml"
+
+UserProfile:
+  $ref: "./UserProfile.yaml"
+
+Message:
+  $ref: "./Message.yaml"
+
+InvalidParams:
+  $ref: "./InvalidParams.yaml"

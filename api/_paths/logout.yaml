@@ -2,7 +2,6 @@ delete:
   tags:
     - sessions
   summary: Sign out
-  operationId: signOut
   responses:
     '204':
       description: The session was deleted successfully.

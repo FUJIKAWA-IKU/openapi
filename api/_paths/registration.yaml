@@ -4,15 +4,17 @@ post:
   summary: アカウント新規登録
   description:
     ユーザーを新規登録する
+  requestBody:
+    description: Sign In data
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            user_profile:
+              $ref: '../openapi.yaml#/components/schemas/UserProfile'
+            login_informaiton:
+              $ref: '../openapi.yaml#/components/schemas/Login'
   responses:
     '200':
       description: SUCCESS
-      content:
-        application/json:
-          schema:
-            type: "object"
-            properties:
-              user_profile:
-                $ref: '../openapi.yaml#/components/schemas/UserProfile'
-              login_informaiton:
-                $ref: '../openapi.yaml#/components/schemas/Login'

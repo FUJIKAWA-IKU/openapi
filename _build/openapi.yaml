@@ -29,7 +29,6 @@ paths:
       tags:
         - sessions
       summary: Sign out
-      operationId: signOut
       responses:
         '204':
           description: The session was deleted successfully.
@@ -45,18 +44,20 @@ paths:
         - registration
       summary: アカウント新規登録
       description: ユーザーを新規登録する
+      requestBody:
+        description: Sign In data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_profile:
+                  $ref: '#/components/schemas/UserProfile'
+                login_informaiton:
+                  $ref: '#/components/schemas/Login'
       responses:
         '200':
           description: SUCCESS
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  user_profile:
-                    $ref: '#/components/schemas/UserProfile'
-                  login_informaiton:
-                    $ref: '#/components/schemas/Login'
   '/api/mypage/{user_id}':
     get:
       tags:
@@ -79,13 +80,15 @@ paths:
       description: マイページの情報を更新する
       parameters:
         - $ref: '#/components/parameters/UserId'
+      requestBody:
+        description: Sign In data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
       responses:
         '200':
           description: SUCCESS
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfile'
     delete:
       tags:
         - mypage
@@ -150,10 +153,6 @@ paths:
       responses:
         '200':
           description: SUCCESS
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfile'
     put:
       tags:
         - like
@@ -164,10 +163,12 @@ paths:
       responses:
         '200':
           description: SUCCESS
+        '400':
+          description: Invalid parameters
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                $ref: '#/components/schemas/InvalidParams'
   '/api/like_from/{user_id}':
     get:
       tags:
@@ -220,15 +221,41 @@ paths:
       description: チャットの投稿
       parameters:
         - $ref: '#/components/parameters/ChatRoomId'
+      requestBody:
+        description: Sign In data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
       responses:
         '200':
           description: SUCCESS
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfile'
 components:
   schemas:
+    Login:
+      type: object
+      properties:
+        login_id:
+          type: integer
+          format: int64
+          example: 1234
+        login_password:
+          type: integer
+          format: int64
+          example: password
+    SessionExpired:
+      type: object
+      properties:
+        type:
+          type: string
+          example: unauthorized
+        title:
+          type: string
+          example: Session expired
+        code:
+          type: integer
+          format: int64
+          example: 401
     UserProfile:
       type: object
       properties:
@@ -258,30 +285,24 @@ components:
         self_introduction:
           type: string
           example: よろしくお願いします！
-    Login:
+    Message:
       type: object
       properties:
-        login_id:
-          type: integer
-          format: int64
-          example: 1234
-        login_password:
-          type: integer
-          format: int64
-          example: password
-    SessionExpired:
+        message:
+          type: string
+          example: はじめまして！
+    InvalidParams:
       type: object
       properties:
         type:
           type: string
-          example: unauthorized
+          example: bad_request
         title:
           type: string
-          example: Session expired
+          example: Request parameters are invalid
         code:
           type: integer
-          format: int64
-          example: 401
+          example: 400
   parameters:
     UserId:
       name: user_id
