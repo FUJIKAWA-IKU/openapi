@@ -1,0 +1,12 @@
+type: "object"
+properties:
+  type:
+    type: "string"
+    example: "unauthorized"
+  title:
+    type: "string"
+    example: "Session expired"
+  code:
+    type: "integer"
+    format: "int64"
+    example: 401

@@ -1,0 +1,14 @@
+delete:
+  tags:
+    - sessions
+  summary: Sign out
+  operationId: signOut
+  responses:
+    '204':
+      description: The session was deleted successfully.
+    '401':
+      description: session expired error
+      content:
+        application/json:
+          schema:
+            $ref: "../openapi.yaml#/components/schemas/SessionExpired"

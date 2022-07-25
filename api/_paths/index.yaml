@@ -1,11 +1,14 @@
-/api/mypage:
-  $ref: "./mypage.yaml"
-
 /api/login:
   $ref: "./login.yaml"
 
+/api/logout:
+  $ref: "./logout.yaml"
+
 /api/registration:
   $ref: "./registration.yaml"
+
+/api/mypage/{user_id}:
+  $ref: "./mypage.yaml"
 
 /api/search:
   $ref: "./search.yaml"

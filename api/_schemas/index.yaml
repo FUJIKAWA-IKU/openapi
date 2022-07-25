@@ -3,3 +3,6 @@ UserProfile:
 
 Login:
   $ref: "./Login.yaml"
+
+SessionExpired:
+  $ref: "./SessionExpired.yaml"

@@ -1,6 +1,7 @@
 get:
   tags:
     - user_detail
+  summary: ユーザー詳細ページ取得
   description:
     ユーザーの詳細情報を取得する
   parameters:

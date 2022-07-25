@@ -1,6 +1,7 @@
 get:
   tags:
     - like_from
+  summary: ユーザーからのいいね一覧ページ取得
   description:
     ユーザーからのいいね一覧ページ取得
   parameters:

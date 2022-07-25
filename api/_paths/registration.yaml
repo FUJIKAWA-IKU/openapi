@@ -1,6 +1,7 @@
 post:
   tags:
     - registration
+  summary: アカウント新規登録
   description:
     ユーザーを新規登録する
   responses:
@@ -13,5 +14,5 @@ post:
             properties:
               user_profile:
                 $ref: '../openapi.yaml#/components/schemas/UserProfile'
-              informaiton:
+              login_informaiton:
                 $ref: '../openapi.yaml#/components/schemas/Login'

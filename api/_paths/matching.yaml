@@ -1,6 +1,7 @@
 get:
   tags:
     - matching
+  summary: マッチングしたユーザー一覧を取得
   description:
     マッチングしたユーザー一覧を取得する
   parameters:

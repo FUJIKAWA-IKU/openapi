@@ -1,6 +1,7 @@
 get:
   tags:
     - chat_room
+  summary: 特定のユーザーとのチャット画面取得
   description:
     チャット画面
   parameters:
@@ -16,6 +17,7 @@ get:
 post:
   tags:
     - chat_room
+  summary: チャットの投稿
   description:
     チャットの投稿
   parameters:

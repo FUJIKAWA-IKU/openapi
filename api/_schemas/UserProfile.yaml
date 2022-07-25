@@ -1,13 +1,5 @@
 type: "object"
 properties:
-  id:
-    type: "integer"
-    format: "int64"
-    example: 100
-  user_id:
-    type: "integer"
-    format: "int64"
-    example: 3
   name:
     type: "string"
     example: "ふじかわ"

@@ -9,45 +9,41 @@ servers:
   - url: 'http://localhost:3000'
     description: Local API server
 paths:
-  /api/mypage:
-    get:
-      tags:
-        - mypage
-      description: マイページの情報を取得する
-      responses:
-        '200':
-          description: SUCCESS
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfile'
-    put:
-      tags:
-        - mypage
-      description: マイページの情報を更新する
-      responses:
-        '200':
-          description: SUCCESS
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserProfile'
   /api/login:
     post:
       tags:
-        - login
-      description: ログインする
+        - sessions
+      summary: Sign In
+      operationId: signIn
+      requestBody:
+        description: Sign In data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
       responses:
         '200':
           description: SUCCESS
+  /api/logout:
+    delete:
+      tags:
+        - sessions
+      summary: Sign out
+      operationId: signOut
+      responses:
+        '204':
+          description: The session was deleted successfully.
+        '401':
+          description: session expired error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Login'
+                $ref: '#/components/schemas/SessionExpired'
   /api/registration:
     post:
       tags:
         - registration
+      summary: アカウント新規登録
       description: ユーザーを新規登録する
       responses:
         '200':
@@ -59,12 +55,53 @@ paths:
                 properties:
                   user_profile:
                     $ref: '#/components/schemas/UserProfile'
-                  informaiton:
+                  login_informaiton:
                     $ref: '#/components/schemas/Login'
+  '/api/mypage/{user_id}':
+    get:
+      tags:
+        - mypage
+      summary: マイページの情報を取得
+      description: マイページの情報を取得する
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+    put:
+      tags:
+        - mypage
+      summary: マイページの情報を更新
+      description: マイページの情報を更新する
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+    delete:
+      tags:
+        - mypage
+      summary: アカウント削除
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: The session was deleted successfully.
+        '401':
+          description: session expired error
   /api/search:
     get:
       tags:
         - search
+      summary: マッチング度が高いユーザー一覧ページ取得
       description: マッチング度が高いユーザー一覧ページ
       responses:
         '200':
@@ -77,6 +114,7 @@ paths:
     get:
       tags:
         - user_detail
+      summary: ユーザー詳細ページ取得
       description: ユーザーの詳細情報を取得する
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -91,6 +129,7 @@ paths:
     get:
       tags:
         - like
+      summary: 自分がいいねした人の一覧情報を取得
       description: ユーザーの詳細情報を取得する
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -104,6 +143,7 @@ paths:
     post:
       tags:
         - like
+      summary: ユーザーにいいねを押す
       description: ユーザーにいいねを押す
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -117,6 +157,7 @@ paths:
     put:
       tags:
         - like
+      summary: ユーザーいいいねを返す
       description: いいねを返す
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -131,6 +172,7 @@ paths:
     get:
       tags:
         - like_from
+      summary: ユーザーからのいいね一覧ページ取得
       description: ユーザーからのいいね一覧ページ取得
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -145,6 +187,7 @@ paths:
     get:
       tags:
         - matching
+      summary: マッチングしたユーザー一覧を取得
       description: マッチングしたユーザー一覧を取得する
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -159,6 +202,7 @@ paths:
     get:
       tags:
         - chat_room
+      summary: 特定のユーザーとのチャット画面取得
       description: チャット画面
       parameters:
         - $ref: '#/components/parameters/ChatRoomId'
@@ -172,6 +216,7 @@ paths:
     post:
       tags:
         - chat_room
+      summary: チャットの投稿
       description: チャットの投稿
       parameters:
         - $ref: '#/components/parameters/ChatRoomId'
@@ -187,14 +232,6 @@ components:
     UserProfile:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 100
-        user_id:
-          type: integer
-          format: int64
-          example: 3
         name:
           type: string
           example: ふじかわ
@@ -232,6 +269,19 @@ components:
           type: integer
           format: int64
           example: password
+    SessionExpired:
+      type: object
+      properties:
+        type:
+          type: string
+          example: unauthorized
+        title:
+          type: string
+          example: Session expired
+        code:
+          type: integer
+          format: int64
+          example: 401
   parameters:
     UserId:
       name: user_id

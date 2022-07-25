@@ -1,6 +1,7 @@
 get:
   tags:
     - like
+  summary: 自分がいいねした人の一覧情報を取得
   description:
     ユーザーの詳細情報を取得する
   parameters:
@@ -16,6 +17,7 @@ get:
 post:
   tags:
     - like
+  summary: ユーザーにいいねを押す
   description:
     ユーザーにいいねを押す
   parameters:
@@ -31,6 +33,7 @@ post:
 put:
   tags:
     - like
+  summary: ユーザーいいいねを返す
   description:
     いいねを返す
   parameters:

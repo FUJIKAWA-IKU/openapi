@@ -1,6 +1,7 @@
 get:
   tags:
     - search
+  summary: マッチング度が高いユーザー一覧ページ取得
   description:
     マッチング度が高いユーザー一覧ページ
   responses:
@@ -10,15 +11,3 @@ get:
         application/json:
           schema:
             $ref: "../openapi.yaml#/components/schemas/UserProfile"
-# put:
-#   tags:
-#     - search
-#   description:
-#     指定した条件でマッチング度がユーザーを検索する
-#   responses:
-#     '200':
-#       description: SUCCESS
-#       content:
-#         application/json:
-#           schema:
-#             $ref: '../openapi.yaml#/components/schemas/UserProfile'
