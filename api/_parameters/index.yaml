@@ -4,7 +4,25 @@ UserId:
   description: ユーザーID
   required: true
   schema:
-    type: integer
+    type: "integer"
+    format: int64
+
+FromUserId:
+  name: from_user_id
+  in: path
+  description: ユーザーID
+  required: true
+  schema:
+    type: "integer"
+    format: int64
+
+ToUserId:
+  name: to_user_id
+  in: path
+  description: ユーザーID
+  required: true
+  schema:
+    type: "integer"
     format: int64
 
 ChatRoomId:
@@ -13,5 +31,32 @@ ChatRoomId:
   description: チャットルームID
   required: true
   schema:
-    type: integer
+    type: "integer"
     format: int64
+
+Search:
+  name: level
+  in: query
+  description: レベル
+  schema:
+    type: object
+    properties:
+      purpose:
+        type: "integer"
+        format: int64
+        example: 1
+      how_to_connect:
+        type: "integer"
+        format: int64
+        example: 3
+      level:
+        type: "integer"
+        format: int64
+        example: 1
+      gender:
+        type: "integer"
+        format: int64
+        example: 2
+      technology:
+        type: "string"
+        example: "Rails"

@@ -4,10 +4,14 @@ get:
   summary: マッチング度が高いユーザー一覧ページ取得
   description:
     マッチング度が高いユーザー一覧ページ
+  parameters:
+    - $ref: '../openapi.yaml#/components/parameters/Search'
   responses:
     '200':
       description: SUCCESS
       content:
         application/json:
           schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+            type: array
+            items:
+              $ref: "../openapi.yaml#/components/schemas/UserProfile"

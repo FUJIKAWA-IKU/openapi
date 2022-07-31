@@ -106,13 +106,17 @@ paths:
         - search
       summary: マッチング度が高いユーザー一覧ページ取得
       description: マッチング度が高いユーザー一覧ページ
+      parameters:
+        - $ref: '#/components/parameters/Search'
       responses:
         '200':
           description: SUCCESS
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfile'
   '/api/user_profile/{user_id}':
     get:
       tags:
@@ -142,24 +146,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfile'
+  '/api/like/{from_user_id}/{to_user_id}':
     post:
       tags:
         - like
       summary: ユーザーにいいねを押す
       description: ユーザーにいいねを押す
       parameters:
-        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/FromUserId'
+        - $ref: '#/components/parameters/ToUserId'
       responses:
         '200':
           description: SUCCESS
     put:
       tags:
         - like
-      summary: ユーザーいいいねを返す
+      summary: ユーザーにいいねを返す
       description: いいねを返す
+      requestBody:
+        description: Sign In data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchingLike'
       parameters:
-        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/FromUserId'
+        - $ref: '#/components/parameters/ToUserId'
       responses:
         '200':
           description: SUCCESS
@@ -172,9 +187,9 @@ paths:
   '/api/like_from/{user_id}':
     get:
       tags:
-        - like_from
-      summary: ユーザーからのいいね一覧ページ取得
-      description: ユーザーからのいいね一覧ページ取得
+        - like
+      summary: 他ユーザーからのいいね一覧ページ取得
+      description: 他ユーザーからのいいね一覧ページ取得
       parameters:
         - $ref: '#/components/parameters/UserId'
       responses:
@@ -183,7 +198,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfile'
   '/api/matching/{user_id}':
     get:
       tags:
@@ -198,7 +215,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfile'
   '/api/chat_room/{chat_room_id}':
     get:
       tags:
@@ -213,7 +232,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfile'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+  '/api/chat_room/{chat_room_id}/message/{user_id}':
     post:
       tags:
         - chat_room
@@ -221,6 +243,7 @@ paths:
       description: チャットの投稿
       parameters:
         - $ref: '#/components/parameters/ChatRoomId'
+        - $ref: '#/components/parameters/UserId'
       requestBody:
         description: Sign In data
         content:
@@ -235,12 +258,12 @@ components:
     Login:
       type: object
       properties:
-        login_id:
-          type: integer
+        login_email:
+          type: string
           format: int64
-          example: 1234
+          example: sample@xxx.jp
         login_password:
-          type: integer
+          type: string
           format: int64
           example: password
     SessionExpired:
@@ -285,6 +308,23 @@ components:
         self_introduction:
           type: string
           example: よろしくお願いします！
+    Like:
+      type: object
+      properties:
+        login_email:
+          type: string
+          format: int64
+          example: sample@xxx.jp
+        login_password:
+          type: string
+          format: int64
+          example: password
+    MatchingLike:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: 'true'
     Message:
       type: object
       properties:
@@ -312,6 +352,22 @@ components:
       schema:
         type: integer
         format: int64
+    FromUserId:
+      name: from_user_id
+      in: path
+      description: ユーザーID
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ToUserId:
+      name: to_user_id
+      in: path
+      description: ユーザーID
+      required: true
+      schema:
+        type: integer
+        format: int64
     ChatRoomId:
       name: chat_room_id
       in: path
@@ -320,3 +376,29 @@ components:
       schema:
         type: integer
         format: int64
+    Search:
+      name: level
+      in: query
+      description: レベル
+      schema:
+        type: object
+        properties:
+          purpose:
+            type: integer
+            format: int64
+            example: 1
+          how_to_connect:
+            type: integer
+            format: int64
+            example: 3
+          level:
+            type: integer
+            format: int64
+            example: 1
+          gender:
+            type: integer
+            format: int64
+            example: 2
+          technology:
+            type: string
+            example: Rails

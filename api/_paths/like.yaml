@@ -12,34 +12,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+            type: array
+            items:
+              $ref: "../openapi.yaml#/components/schemas/UserProfile"
 
-post:
-  tags:
-    - like
-  summary: ユーザーにいいねを押す
-  description:
-    ユーザーにいいねを押す
-  parameters:
-    - $ref: "../openapi.yaml#/components/parameters/UserId"
-  responses:
-    '200':
-      description: SUCCESS
-
-put:
-  tags:
-    - like
-  summary: ユーザーいいいねを返す
-  description:
-    いいねを返す
-  parameters:
-    - $ref: "../openapi.yaml#/components/parameters/UserId"
-  responses:
-    '200':
-      description: SUCCESS
-    "400":
-      description: Invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: "../openapi.yaml#/components/schemas/InvalidParams"

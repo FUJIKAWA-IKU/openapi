@@ -12,22 +12,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
-
-post:
-  tags:
-    - chat_room
-  summary: チャットの投稿
-  description:
-    チャットの投稿
-  parameters:
-    - $ref: "../openapi.yaml#/components/parameters/ChatRoomId"
-  requestBody:
-    description: Sign In data
-    content:
-      application/json:
-        schema:
-          $ref: "../openapi.yaml#/components/schemas/Message"
-  responses:
-    '200':
-      description: SUCCESS
+            type: array
+            items:
+              $ref: "../openapi.yaml#/components/schemas/Message"

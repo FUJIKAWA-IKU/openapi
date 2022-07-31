@@ -12,4 +12,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../openapi.yaml#/components/schemas/UserProfile"
+            type: array
+            items:
+              $ref: "../openapi.yaml#/components/schemas/UserProfile"

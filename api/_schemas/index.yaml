@@ -1,11 +1,18 @@
 Login:
   $ref: "./Login.yaml"
 
+
 SessionExpired:
   $ref: "./SessionExpired.yaml"
 
 UserProfile:
   $ref: "./UserProfile.yaml"
+
+Like:
+  $ref: "./Like.yaml"
+
+MatchingLike:
+  $ref: "./MatchingLike.yaml"
 
 Message:
   $ref: "./Message.yaml"
